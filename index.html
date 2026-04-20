@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AutoServis Kubolli – fast, quality car service in Albania by young expert mechanics Arbjon & Rafael. Passenger cars of all brands.">
+    <meta name="keywords" content="car service Albania, auto repair Lushnja, mechanic Arbjon Rafael, oil change, brake repair, passenger cars">
+    <meta name="author" content="AutoServis Kubolli">
+    <title>AutoServis Kubolli | Expert Mechanics • Fast &amp; Quality</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500&amp;display=swap');
+        
+        :root {
+            --neon-blue: #00f5ff;
+        }
+        
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+        
+        .tailwind-configured {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .logo-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .neon-text {
+            text-shadow: 
+                0 0 10px var(--neon-blue),
+                0 0 20px var(--neon-blue),
+                0 0 40px var(--neon-blue);
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+        }
+        
+        .section-header {
+            position: relative;
+        }
+        
+        .section-header::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: #00f5ff;
+            bottom: -6px;
+            left: 0;
+            box-shadow: 0 0 15px #00f5ff;
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgb(0 245 255 / 0.15);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #00f5ff;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            animation: slideDown 0.3s ease forwards;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .retro-glow {
+            animation: neonPulse 2s ease-in-out infinite alternate;
+        }
+    </style>
+</head>
+<body class="tailwind-configured bg-[#1f2937] text-white">
+    <!-- HEADER / NAVIGATION -->
+    <header class="bg-[#1f2937] border-b border-[#00f5ff]/20 sticky top-0 z-50 shadow-xl">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-12">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <div class="flex items-center gap-x-3">
+                    <div class="w-10 h-10 bg-[#00f5ff] rounded-2xl flex items-center justify-center text-[#1f2937] text-3xl rotate-12 shadow-[0_0_25px_#00f5ff] flex-shrink-0">
+                        🛠️
+                    </div>
+                    <div>
+                        <h1 class="logo-font text-3xl tracking-[-2px] neon-text">AutoServis</h1>
+                        <p class="text-[#00f5ff] text-sm -mt-1 tracking-[3px] font-medium">KUBOLLI</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-x-10 text-sm font-medium uppercase tracking-widest">
+                    <a onclick="smoothScrollTo('home')" class="nav-link cursor-pointer">HOME</a>
+                    <a onclick="smoothScrollTo('portfolio')" class="nav-link cursor-pointer">PORTFOLIO</a>
+                    <a onclick="smoothScrollTo('services')" class="nav-link cursor-pointer">SERVICES</a>
+                    <a onclick="smoothScrollTo('prices')" class="nav-link cursor-pointer">PRICES</a>
+                    <a onclick="smoothScrollTo('contact')" class="nav-link cursor-pointer">CONTACT</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <a onclick="smoothScrollTo('contact')" 
+                   class="hidden md:flex items-center gap-x-2 bg-[#00f5ff] hover:bg-white text-[#1f2937] px-8 py-3 rounded-3xl font-semibold text-sm uppercase tracking-widest shadow-[0_0_25px_#00f5ff] hover:shadow-[0_0_35px_#00f5ff]">
+                    <span>BOOK SERVICE</span>
+                    <span class="text-xl">→</span>
+                </a>
+
+                <!-- Mobile Hamburger -->
+                <button onclick="toggleMobileMenu()" class="md:hidden w-12 h-12 flex items-center justify-center text-3xl" id="hamburger">
+                    ☰
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mobile-menu bg-[#1f2937] border-t border-[#00f5ff]/20 py-6 px-6 text-center">
+                <nav class="flex flex-col gap-y-6 text-lg font-medium uppercase tracking-widest">
+                    <a onclick="toggleMobileMenu();smoothScrollTo('home')" class="py-2">HOME</a>
+                    <a onclick="toggleMobileMenu();smoothScrollTo('portfolio')" class="py-2">PORTFOLIO</a>
+                    <a onclick="toggleMobileMenu();smoothScrollTo('services')" class="py-2">SERVICES</a>
+                    <a onclick="toggleMobileMenu();smoothScrollTo('prices')" class="py-2">PRICES</a>
+                    <a onclick="toggleMobileMenu();smoothScrollTo('contact')" class="py-2">CONTACT</a>
+                    
+                    <a onclick="toggleMobileMenu();smoothScrollTo('contact')" 
+                       class="mt-6 bg-[#00f5ff] text-[#1f2937] py-4 px-10 rounded-3xl font-semibold inline-flex items-center justify-center gap-x-3">
+                        BOOK YOUR SERVICE NOW
+                        <span class="text-2xl">🚗</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero-bg min-h-screen flex items-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,#00f5ff10_0%,transparent_70%)] pointer-events-none"></div>
+        
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-12 grid md:grid-cols-2 gap-12 items-center h-full pt-20 md:pt-0">
+            
+            <!-- Left content -->
+            <div class="space-y-8">
+                <div class="inline-flex items-center gap-x-3 bg-white/10 backdrop-blur-md px-6 py-2 rounded-3xl border border-[#00f5ff]/30 text-sm uppercase tracking-widest">
+                    <div class="w-2 h-2 bg-[#00f5ff] rounded-full animate-pulse"></div>
+                    OPEN • FAST • QUALITY
+                </div>
+                
+                <h1 class="text-6xl md:text-7xl lg:text-8xl font-semibold leading-none logo-font neon-text">
+                    YOUR CAR.<br>OUR PASSION.
+                </h1>
+                
+                <p class="max-w-lg text-xl text-gray-300">
+                    Young mechanics <span class="text-[#00f5ff] font-semibold">Arbjon</span> &amp; <span class="text-[#00f5ff] font-semibold">Rafael</span><br>
+                    Fast, precise and honest service for all passenger cars.
+                </p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a onclick="smoothScrollTo('prices')" 
+                       class="flex-1 md:flex-none bg-[#00f5ff] hover:bg-white text-[#1f2937] text-center md:text-left px-10 py-6 rounded-3xl text-xl font-semibold flex items-center justify-center gap-x-4 group">
+                        SEE OUR PRICES
+                        <span class="text-4xl group-hover:rotate-45">↓</span>
+                    </a>
+                    
+                    <a onclick="smoothScrollTo('contact')" 
+                       class="flex-1 md:flex-none border-2 border-[#00f5ff] hover:bg-[#00f5ff]/10 text-[#00f5ff] text-center md:text-left px-10 py-6 rounded-3xl text-xl font-semibold flex items-center justify-center">
+                        CONTACT THE TEAM
+                    </a>
+                </div>
+                
+                <div class="flex items-center gap-x-8 text-sm">
+                    <div class="flex items-center">
+                        <div class="flex -space-x-4">
+                            <div class="w-8 h-8 bg-[#00f5ff] text-[#1f2937] rounded-2xl flex items-center justify-center text-xl ring-4 ring-[#1f2937]">🧑‍🔧</div>
+                            <div class="w-8 h-8 bg-[#00f5ff] text-[#1f2937] rounded-2xl flex items-center justify-center text-xl ring-4 ring-[#1f2937]">🧑‍🔧</div>
+                        </div>
+                        <p class="ml-4">Arbjon &amp; Rafael</p>
+                    </div>
+                    <div class="h-6 w-px bg-white/30"></div>
+                    <p class="uppercase text-xs leading-tight">
+                        10+ years combined<br>
+                        <span class="text-[#00f5ff]">experience</span>
+                    </p>
+                    <div class="h-6 w-px bg-white/30"></div>
+                    <p class="text-emerald-400 font-medium">✅ 100% satisfaction</p>
+                </div>
+            </div>
+            
+            <!-- Right visual -->
+            <div class="relative hidden md:flex justify-center items-center">
+                <div class="relative w-[420px] h-[420px] rounded-[4rem] border-8 border-[#00f5ff]/30 bg-[#111827] shadow-2xl shadow-[#00f5ff]/20 flex items-center justify-center rotate-[-8deg] hover:rotate-0">
+                    <div class="text-[180px] retro-glow">🚗</div>
+                    <div class="absolute -top-6 -right-6 bg-[#00f5ff] text-[#1f2937] text-sm font-bold px-6 py-2 rounded-3xl rotate-12 shadow-xl">
+                        SINCE 2024
+                    </div>
+                    <div class="absolute -bottom-4 -left-4 text-[#00f5ff] text-6xl font-bold logo-font neon-text">KUBOLLI</div>
+                </div>
+                
+                <!-- Floating badges -->
+                <div class="absolute top-12 -left-6 bg-white/10 backdrop-blur-md px-6 py-3 rounded-3xl text-sm flex items-center gap-x-2 border border-[#00f5ff]/40">
+                    ⚡ QUICK SERVICE
+                </div>
+                <div class="absolute bottom-16 -right-8 bg-white/10 backdrop-blur-md px-6 py-3 rounded-3xl text-sm flex items-center gap-x-2 border border-[#00f5ff]/40">
+                    🔧 ALL BRANDS
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="hidden xl:flex absolute bottom-12 left-1/2 flex-col items-center gap-y-2 text-xs uppercase tracking-widest text-[#00f5ff]">
+            <div class="animate-bounce">↓</div>
+            SCROLL FOR MORE
+        </div>
+    </section>
+
+    <!-- PORTFOLIO SECTION -->
+    <section id="portfolio" class="py-24 bg-[#111827]">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-12">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <span class="uppercase text-[#00f5ff] text-sm font-medium tracking-widest">REAL WORK • REAL RESULTS</span>
+                    <h2 class="section-header text-5xl font-semibold logo-font">Our Portfolio</h2>
+                </div>
+                <p class="max-w-xs text-gray-400 hidden md:block">
+                    Recent passenger cars restored to perfection by Arbjon &amp; Rafael
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Portfolio Card 1 -->
+                <div class="card-hover group bg-[#1f2937] rounded-3xl overflow-hidden border border-[#00f5ff]/10">
+                    <div class="h-64 bg-[#334155] flex items-center justify-center text-8xl relative">
+                        <span class="text-8xl">🚙</span>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                            <div class="text-[#00f5ff] text-sm">VW Golf 8 • Full service + suspension</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-400">April 2026 • 4 hours</p>
+                        <p class="font-medium">Complete diagnostic + repair</p>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Card 2 -->
+                <div class="card-hover group bg-[#1f2937] rounded-3xl overflow-hidden border border-[#00f5ff]/10">
+                    <div class="h-64 bg-[#334155] flex items-center justify-center text-8xl relative">
+                        <span class="text-8xl">🚗</span>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                            <div class="text-[#00f5ff] text-sm">Toyota Corolla • Oil + filters</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-400">March 2026 • 1.5 hours</p>
+                        <p class="font-medium">Express service package</p>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Card 3 -->
+                <div class="card-hover group bg-[#1f2937] rounded-3xl overflow-hidden border border-[#00f5ff]/10">
+                    <div class="h-64 bg-[#334155] flex items-center justify-center text-8xl relative">
+                        <span class="text-8xl">🛻</span>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                            <div class="text-[#00f5ff] text-sm">Mercedes C-Class • Brake system</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-400">March 2026 • 3 hours</p>
+                        <p class="font-medium">Discs + pads replacement</p>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Card 4 -->
+                <div class="card-hover group bg-[#1f2937] rounded-3xl overflow-hidden border border-[#00f5ff]/10">
+                    <div class="h-64 bg-[#334155] flex items-center justify-center text-8xl relative">
+                        <span class="text-8xl">🚘</span>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                            <div class="text-[#00f5ff] text-sm">BMW 3 Series • Engine tuning</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-400">February 2026 • 6 hours</p>
+                        <p class="font-medium">Performance check &amp; repair</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES / GALLERY SECTION -->
+    <section id="services" class="py-24 bg-[#1f2937]">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-12">
+            <div class="text-center mb-12">
+                <span class="uppercase text-[#00f5ff] text-sm font-medium tracking-widest">WHAT WE DO BEST</span>
+                <h2 class="section-header text-5xl font-semibold logo-font mx-auto inline-block">Services Gallery</h2>
+                <p class="text-gray-400 max-w-md mx-auto mt-4">Fast and professional work on all passenger car brands</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="card-hover bg-[#111827] border border-[#00f5ff]/20 rounded-3xl p-8 flex flex-col h-full">
+                    <div class="text-7xl mb-6">🔍</div>
+                    <h3 class="text-2xl font-semibold mb-2">Full Diagnostics</h3>
+                    <p class="text-gray-400 flex-1">Computer diagnostics + visual inspection of all systems. 30-minute check.</p>
+                    <div class="mt-8 text-[#00f5ff] flex items-center gap-x-2 text-sm uppercase">Learn more <span class="text-xl">→</span></div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="card-hover bg-[#111827] border border-[#00f5ff]/20 rounded-3xl p-8 flex flex-col h-full">
+                    <div class="text-7xl mb-6">🛢️</div>
+                    <h3 class="text-2xl font-semibold mb-2">Oil Change &amp; Filters</h3>
+                    <p class="text-gray-400 flex-1">Premium oil, oil filter, air filter, cabin filter. Done in under 60 minutes.</p>
+                    <div class="mt-8 text-[#00f5ff] flex items-center gap-x-2 text-sm uppercase">Learn more <span class="text-xl">→</span></div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="card-hover bg-[#111827] border border-[#00f5ff]/20 rounded-3xl p-8 flex flex-col h-full">
+                    <div class="text-7xl mb-6">🛑</div>
+                    <h3 class="text-2xl font-semibold mb-2">Brake Repair</h3>
+                    <p class="text-gray-400 flex-1">Pads, discs, calipers, ABS diagnostics. Safety first, always.</p>
+                    <div class="mt-8 text-[#00f5ff] flex items-center gap-x-2 text-sm uppercase">Learn more <span class="text-xl">→</span></div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="card-hover bg-[#111827] border border-[#00f5ff]/20 rounded-3xl p-8 flex flex-col h-full">
+                    <div class="text-7xl mb-6">🛞</div>
+                    <h3 class="text-2xl font-semibold mb-2">Tires &amp; Wheels</h3>
+                    <p class="text-gray-400 flex-1">Mounting, balancing, alignment, seasonal tire change.</p>
+                    <div class="mt-8 text-[#00f5ff] flex items-center gap-x-2 text-sm uppercase">Learn more <span class="text-xl">→</span></div>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="card-hover bg-[#111827] border border-[#00f5ff]/20 rounded-3xl p-8 flex flex-col h-full">
+                    <div class="text-7xl mb-6">⚙️</div>
+                    <h3 class="text-2xl font-semibold mb-2">Suspension &amp; Steering</h3>
+                    <p class="text-gray-400 flex-1">Shocks, struts, bushings, ball joints – smooth ride guaranteed.</p>
+                    <div class="mt-8 text-[#00f5ff] flex items-center gap-x-2 text-sm uppercase">Learn more <span class="text-xl">→</span></div>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="card-hover bg-[#111827] border border-[#00f5ff]/20 rounded-3xl p-8 flex flex-col h-full">
+                    <div class="text-7xl mb-6">🔥</div>
+                    <h3 class="text-2xl font-semibold mb-2">Engine &amp; Cooling</h3>
+                    <p class="text-gray-400 flex-1">Thermostat, radiator, belts, minor engine repairs.</p>
+                    <div class="mt-8 text-[#00f5ff] flex items-center gap-x-2 text-sm uppercase">Learn more <span class="text-xl">→</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICES SECTION (Albanian Lek) -->
+    <section id="prices" class="py-24 bg-[#111827]">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-12">
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/3">
+                    <span class="uppercase text-[#00f5ff] text-sm font-medium tracking-widest">TRANSPARENT PRICING</span>
+                    <h2 class="section-header text-5xl font-semibold logo-font">Prices in ALL</h2>
+                    <p class="mt-6 text-gray-300">All prices include VAT and original spare parts where possible. No hidden fees.</p>
+                    <div class="mt-12 p-6 bg-[#1f2937] rounded-3xl text-sm border border-[#00f5ff]/20">
+                        <div class="flex justify-between items-center py-3 border-b border-white/10">
+                            <span class="text-[#00f5ff]">Fast turnaround</span>
+                            <span class="font-medium">Same day for most jobs</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3 border-b border-white/10">
+                            <span class="text-[#00f5ff]">Warranty</span>
+                            <span class="font-medium">6 months on all work</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-2/3">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-[#1f2937] rounded-3xl p-8 flex justify-between items-center">
+                            <div>
+                                <p class="font-semibold text-lg">Full Computer Diagnostic</p>
+                                <p class="text-sm text-gray-400">OBD scan + report</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-4xl font-semibold text-[#00f5ff]">1,800</span>
+                                <span class="block text-xs -mt-1">ALL</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-[#1f2937] rounded-3xl p-8 flex justify-between items-center">
+                            <div>
+                                <p class="font-semibold text-lg">Oil Change (5L synthetic) + Filters</p>
+                                <p class="text-sm text-gray-400">Most passenger cars</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-4xl font-semibold text-[#00f5ff]">3,200</span>
+                                <span class="block text-xs -mt-1">ALL</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-[#1f2937] rounded-3xl p-8 flex justify-between items-center">
+                            <div>
+                                <p class="font-semibold text-lg">Front Brake Pads + Discs</p>
+                                <p class="text-sm text-gray-400">Includes labor</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-4xl font-semibold text-[#00f5ff]">7,900</span>
+                                <span class="block text-xs -mt-1">ALL</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-[#1f2937] rounded-3xl p-8 flex justify-between items-center">
+                            <div>
+                                <p class="font-semibold text-lg">4 Tires Mounting + Balancing</p>
+                                <p class="text-sm text-gray-400">Seasonal change</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-4xl font-semibold text-[#00f5ff]">2,800</span>
+                                <span class="block text-xs -mt-1">ALL</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-[#1f2937] rounded-3xl p-8 flex justify-between items-center">
+                            <div>
+                                <p class="font-semibold text-lg">Suspension Inspection + Repair</p>
+                                <p class="text-sm text-gray-400">Per axle</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-4xl font-semibold text-[#00f5ff]">6,500</span>
+                                <span class="block text-xs -mt-1">ALL</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-[#1f2937] rounded-3xl p-8 flex justify-between items-center">
+                            <div>
+                                <p class="font-semibold text-lg">Full Service Package</p>
+                                <p class="text-sm text-gray-400">Oil + filters + brakes check + diagnostic</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-4xl font-semibold text-[#00f5ff]">14,900</span>
+                                <span class="block text-xs -mt-1">ALL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTS SECTION -->
+    <section id="contact" class="py-24 bg-[#1f2937]">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-12">
+            <div class="grid lg:grid-cols-12 gap-16">
+                <!-- Info -->
+                <div class="lg:col-span-5">
+                    <h2 class="section-header text-5xl font-semibold logo-font">Let’s keep your car running perfectly</h2>
+                    <p class="mt-6 text-xl text-gray-300">Arbjon &amp; Rafael are ready to help. Quick response guaranteed.</p>
+                    
+                    <div class="mt-16 space-y-8">
+                        <!-- Phone -->
+                        <a href="tel:+355691234567" class="flex items-center gap-x-6 group">
+                            <div class="w-14 h-14 bg-[#00f5ff] text-[#1f2937] rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110">📱</div>
+                            <div>
+                                <p class="text-[#00f5ff] uppercase text-xs">Call us directly</p>
+                                <p class="text-3xl font-semibold">+355 69 898 8121 </p>
+                            </div>
+                        </a>
+                        
+                        <!-- WhatsApp -->
+                        <a href="https://wa.me/355691234567" target="_blank" class="flex items-center gap-x-6 group">
+                            <div class="w-14 h-14 bg-[#00f5ff] text-[#1f2937] rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110">💬</div>
+                            <div>
+                                <p class="text-[#00f5ff] uppercase text-xs">Message on WhatsApp</p>
+                                <p class="text-3xl font-semibold">+355 69 898 8121 </p>
+                            </div>
+                        </a>
+                        
+                        <!-- Instagram -->
+                        <a href="https://instagram.com/autoserviskuboli" target="_blank" class="flex items-center gap-x-6 group">
+                            <div class="w-14 h-14 bg-[#00f5ff] text-[#1f2937] rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110">📸</div>
+                            <div>
+                                <p class="text-[#00f5ff] uppercase text-xs">Follow our work</p>
+                                <p class="text-3xl font-semibold">@auto_servis_kubolli</p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-12 text-sm text-gray-400">
+                        📍 Lushnja, Albania<br>
+                        Open Monday – Saturday • 8:00 – 18:00
+                    </div>
+                </div>
+                
+                <!-- Simple contact form -->
+                <div class="lg:col-span-7 bg-[#111827] rounded-3xl p-8 md:p-12">
+                    <form id="contactForm" onsubmit="handleSubmit(event)" class="space-y-8">
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <label class="uppercase text-xs text-gray-400 mb-2 block">Your name</label>
+                                <input type="text" id="name" required 
+                                       class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 focus:border-[#00f5ff] outline-none">
+                            </div>
+                            <div>
+                                <label class="uppercase text-xs text-gray-400 mb-2 block">Car model</label>
+                                <input type="text" id="car" placeholder="e.g. VW Golf 2023" 
+                                       class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 focus:border-[#00f5ff] outline-none">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="uppercase text-xs text-gray-400 mb-2 block">Phone or WhatsApp</label>
+                            <input type="tel" id="phone" required 
+                                   class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-5 focus:border-[#00f5ff] outline-none">
+                        </div>
+                        
+                        <div>
+                            <label class="uppercase text-xs text-gray-400 mb-2 block">What needs fixing?</label>
+                            <textarea id="message" rows="4" required 
+                                      class="w-full bg-white/10 border border-white/20 rounded-3xl px-6 py-5 focus:border-[#00f5ff] outline-none resize-none"></textarea>
+                        </div>
+                        
+                        <button type="submit"
+                                class="w-full py-7 bg-[#00f5ff] text-[#1f2937] text-xl font-semibold rounded-3xl flex items-center justify-center gap-x-4 hover:shadow-[0_0_40px_#00f5ff]">
+                            SEND MESSAGE TO ARBjon &amp; RAFAEL
+                            <span class="text-3xl">🚀</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-12 border-t border-[#00f5ff]/10">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-12">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-y-6">
+                <div class="flex items-center gap-x-3">
+                    <div class="w-9 h-9 bg-[#00f5ff] text-[#1f2937] rounded-2xl flex items-center justify-center text-3xl">🛠️</div>
+                    <div class="logo-font text-3xl neon-text">AutoServis Kubolli</div>
+                </div>
+                
+                <p class="text-gray-500 text-sm">© 2026 AutoServis Kuboli • All Rights Reserved</p>
+                
+                <div class="flex gap-x-8 text-[#00f5ff]">
+                    <a href="https://instagram.com/autoserviskuboli" target="_blank" class="hover:text-white">Instagram</a>
+                    <a href="https://wa.me/355691234567" target="_blank" class="hover:text-white">WhatsApp</a>
+                    <a href="tel:+355691234567" class="hover:text-white">Phone</a>
+                </div>
+                
+                <p class="text-xs text-gray-500 max-w-[200px] text-center md:text-right">
+                    Young team. Big experience.<br>
+                    Fast &amp; quality work on every passenger car.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /**
+         * Tailwind CSS initialization
+         */
+        function initializeTailwind() {
+            return {
+                config(userConfig = {}) {
+                    return {
+                        content: [],
+                        theme: {
+                            extend: {},
+                        },
+                        plugins: [],
+                        ...userConfig,
+                    }
+                },
+                theme(userTheme = {}) {
+                    return {
+                        ...this.defaultTheme(),
+                        ...userTheme,
+                    }
+                },
+                defaultTheme() {
+                    return {
+                        extend: {
+                            colors: {
+                                neon: '#00f5ff'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        /**
+         * Mobile menu toggle
+         */
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu')
+            const hamburger = document.getElementById('hamburger')
+            
+            if (menu.classList.contains('hidden')) {
+                menu.style.display = 'block'
+                hamburger.innerHTML = '✕'
+            } else {
+                menu.style.display = 'none'
+                hamburger.innerHTML = '☰'
+            }
+        }
+        
+        /**
+         * Smooth scroll to section
+         */
+        function smoothScrollTo(section) {
+            let target
+            if (section === 'home') target = document.getElementById('home')
+            else if (section === 'portfolio') target = document.getElementById('portfolio')
+            else if (section === 'services') target = document.getElementById('services')
+            else if (section === 'prices') target = document.getElementById('prices')
+            else if (section === 'contact') target = document.getElementById('contact')
+            
+            if (target) {
+                const headerOffset = 80
+                const elementPosition = target.getBoundingClientRect().top
+                const offsetPosition = elementPosition + window.scrollY - headerOffset
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                })
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobileMenu')
+                if (mobileMenu.style.display === 'block') {
+                    mobileMenu.style.display = 'none'
+                    document.getElementById('hamburger').innerHTML = '☰'
+                }
+            }
+        }
+        
+        /**
+         * Fake form submission with nice feedback
+         */
+        function handleSubmit(e) {
+            e.preventDefault()
+            
+            const btn = e.target.querySelector('button')
+            const originalText = btn.innerHTML
+            
+            btn.style.transitionDuration = '300ms'
+            btn.innerHTML = `
+                <span class="inline-flex items-center gap-x-3">
+                    <span class="animate-spin">🔄</span>
+                    SENDING TO THE TEAM...
+                </span>
+            `
+            setTimeout(() => {
+                btn.innerHTML = `
+                    <span class="flex items-center justify-center gap-x-3 text-emerald-400">
+                        ✅ MESSAGE SENT!<br>
+                        <span class="text-base">Arbjon or Rafael will reply in minutes</span>
+                    </span>
+                `
+                
+                setTimeout(() => {
+                    // Reset form
+                    e.target.reset()
+                    btn.innerHTML = originalText
+                    
+                    // Show success toast
+                    const toast = document.createElement('div')
+                    toast.style.cssText = 'position:fixed; bottom:24px; right:24px; background:#00f5ff; color:#1f2937; padding:16px 24px; border-radius:9999px; box-shadow:0 0 30px #00f5ff; font-weight:600; z-index:9999;'
+                    toast.textContent = '✅ Thank you! We received your request.'
+                    document.body.appendChild(toast)
+                    
+                    setTimeout(() => toast.remove(), 4000)
+                }, 2200)
+            }, 1700)
+        }
+        
+        /**
+         * Main initialization when page loads
+         */
+        function launchSite() {
+            initializeTailwind()
+            
+            // Add some extra scroll animations
+            const cards = document.querySelectorAll('.card-hover')
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1
+                        entry.target.style.transform = 'translateY(0)'
+                    }
+                })
+            }, { threshold: 0.15 })
+            
+            cards.forEach(card => {
+                card.style.opacity = 0
+                card.style.transform = 'translateY(30px)'
+                observer.observe(card)
+            })
+            
+            console.log('%c🚗 AutoServis Kuboli website successfully launched! Modern retro design + Tailwind + smooth animations ready.', 'color:#00f5ff; font-family:monospace; font-size:13px')
+        }
+        
+        // Launch everything
+        window.onload = launchSite
+    </script>
+</body>
+</html>
